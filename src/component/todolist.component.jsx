@@ -6,11 +6,11 @@ class Todolist extends React.Component {
     // console.log(this.props.toggle);
     // console.log(this.props.list);
     return (
-      <div>
-        <ul>
+      <div className='list' >
+        <ul >
           {this.props.list.map((item, index) => {
             return (
-              <li key={index} >
+              <li key={index}  >
                 {item}
                 <button onClick={() => this.props.handleDelete(index)}>
                   delete
@@ -18,6 +18,7 @@ class Todolist extends React.Component {
                 <button onClick={() => this.props.handleEdit(index, item)}>
                   Edit
                 </button>
+              
                 <form className={`${this.props.toggle ? "noEdit" : "edit"}`} >
                  <input
                    type="text"

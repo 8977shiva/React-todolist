@@ -12,7 +12,7 @@ class App extends React.Component {
       list: [],
 
       Edit: "",
-
+     
       toggle: true
     };
   }
@@ -42,10 +42,12 @@ class App extends React.Component {
  
     if (this.state.toggle) {
       this.setState({ toggle: false });
+      
     } else {
       this.setState({ toggle: true });
-     
+       
       this.setState({ Edit: this.state.Edit });
+       
       if (this.state.Edit.length > 0) {
         this.state.list.splice(i, 1, this.state.Edit)
           this.setState({Edit:''});
@@ -58,6 +60,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h1>Todolist</h1>
         <TodoInput
           todo={this.state.todo}
           handleChange={this.handleChange}
@@ -72,6 +75,7 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           Edit={this.state.Edit}
+          test={this.state.test}
         />
       </div>
     );
