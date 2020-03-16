@@ -4,7 +4,7 @@ import React from 'react'
     return (
         <div className='Todo'>
             <form onSubmit={handleSubmit}>
-                <input  type='text' value={todo} onChange={handleChange}/>
+                <input  type='text' value={todo} name='todo' onChange={handleChange}/>
                 <button type="submit" >Add to list</button>
             </form>
             
