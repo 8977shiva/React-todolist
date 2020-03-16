@@ -10,26 +10,25 @@ class App extends React.Component {
     this.state = {
       todo: "",
       list: [],
-      list2:[],
+
       Edit: "",
-      
+
       toggle: true
     };
   }
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    console.log("edit",this.state.Edit);
-    // console.log('todo',this.state.todo)
+    console.log("edit", this.state.Edit);
   };
   handleSubmit = event => {
     event.preventDefault();
-    if (this.state.toggle) {
+    if (this.state.todo.length > 0) {
       this.setState({ todo: "", list: [...this.state.list, this.state.todo] });
     } else {
-      // console.log("edit",this.state.Edit)
-      
+      alert("add something");
     }
   };
+  // delete
   handleDelete = i => {
     console.log("index", this.state.list[i]);
     let item = this.state.list[i];
@@ -37,26 +36,26 @@ class App extends React.Component {
     console.log(filteredList);
     this.setState({ list: filteredList });
   };
-  handleEdit = i => {
-    // console.log(this.state.Edit);
-    
+  //edit
+  handleEdit = (i,event)=> {
+  //  console.log('item',item)
+ 
     if (this.state.toggle) {
-      this.setState({ toggle: false })
-     
+      this.setState({ toggle: false });
     } else {
       this.setState({ toggle: true });
+     
       this.setState({ Edit: this.state.Edit });
-      this.setState({list2: this.state.list.splice(i,1 ,this.state.Edit)})
-      
-      
-      
-       
+      if (this.state.Edit.length > 0) {
+        this.state.list.splice(i, 1, this.state.Edit)
+          this.setState({Edit:''});
+      }
     }
-    return this.state.list
+    //span
+  
   };
 
   render() {
-    console.log("app renders",this.state.list)
     return (
       <div className="App">
         <TodoInput
@@ -64,7 +63,6 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        {/* {  this.state.list.map(m=><h1>{m}</h1>)} */}
 
         <Todolist
           list={this.state.list}
@@ -73,7 +71,7 @@ class App extends React.Component {
           toggle={this.state.toggle}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          Edit={this.state.todo}
+          Edit={this.state.Edit}
         />
       </div>
     );
